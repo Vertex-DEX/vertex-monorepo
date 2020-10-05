@@ -1,18 +1,18 @@
 {
-  "name": "@uniswap/lib",
+  "name": "@vertex/lib",
   "version": "1.1.4",
-  "description": "📖 Solidity libraries that are shared across Uniswap contracts",
+  "description": "📖 Solidity libraries that are shared across Vertex contracts",
   "files": [
     "contracts",
     "!contracts/test"
   ],
-  "homepage": "https://uniswap.org",
+  "homepage": "https://vert.exchange",
   "repository": {
-    "url": "https://github.com/Uniswap/uniswap-lib",
+    "url": "https://github.com/Vertex-DEX/vertex-lib",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/Uniswap/uniswap-lib/issues"
+    "url": "https://github.com/Vertex-DEX/vertex-lib/issues"
   },
   "engines": {
     "node": ">=10"
