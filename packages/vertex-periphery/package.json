@@ -15,8 +15,8 @@
     "contracts"
   ],
   "dependencies": {
-    "@vertex/lib": "1.1.1",
-    "@vertex/core": "1.0.0"
+    "@vertex/lib": "1.1.4",
+    "@vertex/core": "1.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.6",
