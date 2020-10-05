@@ -1,22 +1,22 @@
 {
-  "name": "@uniswap/v2-periphery",
+  "name": "vertex/periphery",
   "version": "1.1.0-beta.0",
-  "description": "🎚 Peripheral smart contracts for interacting with Uniswap V2",
+  "description": "🎚 Peripheral smart contracts for interacting with Vertex",
   "engines": {
     "node": ">=10"
   },
-  "homepage": "https://uniswap.org",
+  "homepage": "https://vert.exchange",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Uniswap/uniswap-v2-periphery"
+    "url": "https://github.com/Vertex-DEX/vertex-periphery"
   },
   "files": [
     "build",
     "contracts"
   ],
   "dependencies": {
-    "@uniswap/lib": "1.1.1",
-    "@uniswap/v2-core": "1.0.0"
+    "vertex/lib": "1.1.1",
+    "vertex/core": "1.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.6",
