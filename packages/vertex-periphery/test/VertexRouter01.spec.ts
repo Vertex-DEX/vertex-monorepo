@@ -11,12 +11,12 @@ import { v2Fixture } from './shared/fixtures'
 chai.use(solidity)
 
 const overrides = {
-  gasLimit: 9999999
+  gasLimit: 9999999,
 }
 
 enum RouterVersion {
   VertexRouter01 = 'VertexRouter01',
-  VertexRouter02 = 'VertexRouter02'
+  VertexRouter02 = 'VertexRouter02',
 }
 
 describe('VertexRouter{01,02}', () => {
@@ -24,7 +24,7 @@ describe('VertexRouter{01,02}', () => {
     const provider = new MockProvider({
       hardfork: 'istanbul',
       mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
-      gasLimit: 9999999
+      gasLimit: 9999999,
     })
     const [wallet] = provider.getWallets()
     const loadFixture = createFixtureLoader(provider, [wallet])
@@ -38,7 +38,7 @@ describe('VertexRouter{01,02}', () => {
     let pair: Contract
     let WETHPair: Contract
     let routerEventEmitter: Contract
-    beforeEach(async function() {
+    beforeEach(async function () {
       const fixture = await loadFixture(v2Fixture)
       token0 = fixture.token0
       token1 = fixture.token1
@@ -47,14 +47,14 @@ describe('VertexRouter{01,02}', () => {
       factory = fixture.factoryV2
       router = {
         [RouterVersion.VertexRouter01]: fixture.router01,
-        [RouterVersion.VertexRouter02]: fixture.router02
+        [RouterVersion.VertexRouter02]: fixture.router02,
       }[routerVersion as RouterVersion]
       pair = fixture.pair
       WETHPair = fixture.WETHPair
       routerEventEmitter = fixture.routerEventEmitter
     })
 
-    afterEach(async function() {
+    afterEach(async function () {
       expect(await provider.getBalance(router.address)).to.eq(Zero)
     })
 
@@ -369,7 +369,7 @@ describe('VertexRouter{01,02}', () => {
           expect(receipt.gasUsed).to.eq(
             {
               [RouterVersion.VertexRouter01]: 101876,
-              [RouterVersion.VertexRouter02]: 101898
+              [RouterVersion.VertexRouter02]: 101898,
             }[routerVersion as RouterVersion]
           )
         }).retries(3)
@@ -445,7 +445,7 @@ describe('VertexRouter{01,02}', () => {
           await expect(
             router.swapExactETHForTokens(0, [WETH.address, WETHPartner.address], wallet.address, MaxUint256, {
               ...overrides,
-              value: swapAmount
+              value: swapAmount,
             })
           )
             .to.emit(WETH, 'Transfer')
@@ -482,7 +482,7 @@ describe('VertexRouter{01,02}', () => {
               MaxUint256,
               {
                 ...overrides,
-                value: swapAmount
+                value: swapAmount,
               }
             )
           )
@@ -511,14 +511,14 @@ describe('VertexRouter{01,02}', () => {
             MaxUint256,
             {
               ...overrides,
-              value: swapAmount
+              value: swapAmount,
             }
           )
           const receipt = await tx.wait()
           expect(receipt.gasUsed).to.eq(
             {
               [RouterVersion.VertexRouter01]: 138770,
-              [RouterVersion.VertexRouter02]: 138770
+              [RouterVersion.VertexRouter02]: 138770,
             }[routerVersion as RouterVersion]
           )
         }).retries(3)
@@ -683,7 +683,7 @@ describe('VertexRouter{01,02}', () => {
               MaxUint256,
               {
                 ...overrides,
-                value: expectedSwapAmount
+                value: expectedSwapAmount,
               }
             )
           )
@@ -721,7 +721,7 @@ describe('VertexRouter{01,02}', () => {
               MaxUint256,
               {
                 ...overrides,
-                value: expectedSwapAmount
+                value: expectedSwapAmount,
               }
             )
           )

@@ -1,8 +1,8 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IVertexPair.sol';
-import '@uniswap/lib/contracts/libraries/Babylonian.sol';
-import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
+import '@vertex/core/contracts/interfaces/IVertexPair.sol';
+import '@vertex/lib/contracts/libraries/Babylonian.sol';
+import '@vertex/lib/contracts/libraries/TransferHelper.sol';
 
 import '../interfaces/IERC20.sol';
 import '../interfaces/IVertexRouter01.sol';

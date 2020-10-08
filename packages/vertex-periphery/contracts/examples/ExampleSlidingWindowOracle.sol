@@ -1,12 +1,12 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IVertexFactory.sol';
-import '@uniswap/v2-core/contracts/interfaces/IVertexPair.sol';
-import '@uniswap/lib/contracts/libraries/FixedPoint.sol';
+import '@vertex/core/contracts/interfaces/IVertexFactory.sol';
+import '@vertex/core/contracts/interfaces/IVertexPair.sol';
+import '@vertex/lib/contracts/libraries/FixedPoint.sol';
 
 import '../libraries/SafeMath.sol';
 import '../libraries/VertexLibrary.sol';
-import '../libraries/UniswapV2OracleLibrary.sol';
+import '../libraries/VertexOracleLibrary.sol';
 
 // sliding window oracle that uses observations collected over a window to provide moving price averages in the past
 // `windowSize` with a precision of `windowSize / granularity`
@@ -85,9 +85,7 @@ contract ExampleSlidingWindowOracle {
         // we only want to commit updates once per period (i.e. windowSize / granularity)
         uint256 timeElapsed = block.timestamp - observation.timestamp;
         if (timeElapsed > periodSize) {
-            (uint256 price0Cumulative, uint256 price1Cumulative, ) = UniswapV2OracleLibrary.currentCumulativePrices(
-                pair
-            );
+            (uint256 price0Cumulative, uint256 price1Cumulative, ) = VertexOracleLibrary.currentCumulativePrices(pair);
             observation.timestamp = block.timestamp;
             observation.price0Cumulative = price0Cumulative;
             observation.price1Cumulative = price1Cumulative;
@@ -125,7 +123,7 @@ contract ExampleSlidingWindowOracle {
         // should never happen.
         require(timeElapsed >= windowSize - periodSize * 2, 'SlidingWindowOracle: UNEXPECTED_TIME_ELAPSED');
 
-        (uint256 price0Cumulative, uint256 price1Cumulative, ) = UniswapV2OracleLibrary.currentCumulativePrices(pair);
+        (uint256 price0Cumulative, uint256 price1Cumulative, ) = VertexOracleLibrary.currentCumulativePrices(pair);
         (address token0, ) = VertexLibrary.sortTokens(tokenIn, tokenOut);
 
         if (token0 == tokenIn) {

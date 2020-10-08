@@ -1,6 +1,6 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Callee.sol';
+import '@vertex/core/contracts/interfaces/IVertexCallee.sol';
 
 import '../libraries/VertexLibrary.sol';
 import '../interfaces/V1/IUniswapV1Factory.sol';
@@ -9,7 +9,7 @@ import '../interfaces/IVertexRouter01.sol';
 import '../interfaces/IERC20.sol';
 import '../interfaces/IWETH.sol';
 
-contract ExampleFlashSwap is IUniswapV2Callee {
+contract ExampleFlashSwap is IVertexCallee {
     IUniswapV1Factory immutable factoryV1;
     address immutable factory;
     IWETH immutable WETH;
@@ -29,7 +29,7 @@ contract ExampleFlashSwap is IUniswapV2Callee {
     receive() external payable {}
 
     // gets tokens/WETH via a V2 flash swap, swaps for the ETH/tokens on V1, repays V2, and keeps the rest!
-    function uniswapV2Call(
+    function vertexCall(
         address sender,
         uint256 amount0,
         uint256 amount1,

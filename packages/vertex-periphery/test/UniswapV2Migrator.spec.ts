@@ -10,14 +10,14 @@ import { expandTo18Decimals, MINIMUM_LIQUIDITY } from './shared/utilities'
 chai.use(solidity)
 
 const overrides = {
-  gasLimit: 9999999
+  gasLimit: 9999999,
 }
 
 describe('UniswapV2Migrator', () => {
   const provider = new MockProvider({
     hardfork: 'istanbul',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
-    gasLimit: 9999999
+    gasLimit: 9999999,
   })
   const [wallet] = provider.getWallets()
   const loadFixture = createFixtureLoader(provider, [wallet])
@@ -27,7 +27,7 @@ describe('UniswapV2Migrator', () => {
   let router: Contract
   let migrator: Contract
   let WETHExchangeV1: Contract
-  beforeEach(async function() {
+  beforeEach(async function () {
     const fixture = await loadFixture(v2Fixture)
     WETHPartner = fixture.WETHPartner
     WETHPair = fixture.WETHPair
@@ -42,7 +42,7 @@ describe('UniswapV2Migrator', () => {
     await WETHPartner.approve(WETHExchangeV1.address, MaxUint256)
     await WETHExchangeV1.addLiquidity(bigNumberify(1), WETHPartnerAmount, MaxUint256, {
       ...overrides,
-      value: ETHAmount
+      value: ETHAmount,
     })
     await WETHExchangeV1.approve(migrator.address, MaxUint256)
     const expectedLiquidity = expandTo18Decimals(2)

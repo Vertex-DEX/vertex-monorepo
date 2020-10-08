@@ -1,10 +1,10 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IVertexFactory.sol';
-import '@uniswap/v2-core/contracts/interfaces/IVertexPair.sol';
-import '@uniswap/lib/contracts/libraries/FixedPoint.sol';
+import '@vertex/core/contracts/interfaces/IVertexFactory.sol';
+import '@vertex/core/contracts/interfaces/IVertexPair.sol';
+import '@vertex/lib/contracts/libraries/FixedPoint.sol';
 
-import '../libraries/UniswapV2OracleLibrary.sol';
+import '../libraries/VertexOracleLibrary.sol';
 import '../libraries/VertexLibrary.sol';
 
 // fixed window oracle that recomputes the average price for the entire period once every period
@@ -42,7 +42,7 @@ contract ExampleOracleSimple {
     }
 
     function update() external {
-        (uint256 price0Cumulative, uint256 price1Cumulative, uint32 blockTimestamp) = UniswapV2OracleLibrary
+        (uint256 price0Cumulative, uint256 price1Cumulative, uint32 blockTimestamp) = VertexOracleLibrary
             .currentCumulativePrices(address(pair));
         uint32 timeElapsed = blockTimestamp - blockTimestampLast; // overflow is desired
 
