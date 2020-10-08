@@ -11,7 +11,7 @@ import ExampleSlidingWindowOracle from '../build/ExampleSlidingWindowOracle.json
 chai.use(solidity)
 
 const overrides = {
-  gasLimit: 9999999
+  gasLimit: 9999999,
 }
 
 const defaultToken0Amount = expandTo18Decimals(5)
@@ -21,7 +21,7 @@ describe('ExampleSlidingWindowOracle', () => {
   const provider = new MockProvider({
     hardfork: 'istanbul',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
-    gasLimit: 9999999
+    gasLimit: 9999999,
   })
   const [wallet] = provider.getWallets()
   const loadFixture = createFixtureLoader(provider, [wallet])
@@ -55,7 +55,7 @@ describe('ExampleSlidingWindowOracle', () => {
     return deployContract(wallet, ExampleSlidingWindowOracle, [factory.address, windowSize, granularity], overrides)
   }
 
-  beforeEach('deploy fixture', async function() {
+  beforeEach('deploy fixture', async function () {
     const fixture = await loadFixture(v2Fixture)
 
     token0 = fixture.token0
@@ -142,7 +142,7 @@ describe('ExampleSlidingWindowOracle', () => {
       expect(await slidingWindowOracle.pairObservations(pair.address, observationIndexOf(blockTimestamp))).to.deep.eq([
         bigNumberify(blockTimestamp),
         await pair.price0CumulativeLast(),
-        await pair.price1CumulativeLast()
+        await pair.price1CumulativeLast(),
       ])
     }).retries(2) // we may have slight differences between pair blockTimestamp and the expected timestamp
     // because the previous block timestamp may differ from the current block timestamp by 1 second

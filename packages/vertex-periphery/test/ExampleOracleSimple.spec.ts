@@ -1,6 +1,5 @@
 import chai, { expect } from 'chai'
 import { Contract } from 'ethers'
-import { BigNumber } from 'ethers/utils'
 import { solidity, MockProvider, createFixtureLoader, deployContract } from 'ethereum-waffle'
 
 import { expandTo18Decimals, mineBlock, encodePrice } from './shared/utilities'
@@ -43,7 +42,9 @@ describe('ExampleOracleSimple', () => {
     token0 = fixture.token0
     token1 = fixture.token1
     pair = fixture.pair
+
     await addLiquidity()
+
     exampleOracleSimple = await deployContract(
       wallet,
       ExampleOracleSimple,
