@@ -28,7 +28,7 @@ library VertexLibrary {
                         hex'ff',
                         factory,
                         keccak256(abi.encodePacked(token0, token1)),
-                        hex'e9af25cfd7086acf4bb3fc7e23e7e81b5e2db502c3924628a2d734e32a7edd2d' // init code hash
+                        hex'05b65cd7bc1a34ea2c4c9b05ca0a5f82e650972ebf888352303df7cdbe41725f' // init code hash
                     )
                 )
             )

@@ -7,7 +7,7 @@ contract VertexERC20 is IVertexERC20 {
     using SafeMath for uint256;
 
     string public constant name = 'Vertex';
-    string public constant symbol = 'UNI-V2';
+    string public constant symbol = 'VERTLP';
     uint8 public constant decimals = 18;
     uint256 public totalSupply;
     mapping(address => uint256) public balanceOf;

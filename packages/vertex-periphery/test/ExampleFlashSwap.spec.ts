@@ -13,14 +13,14 @@ chai.use(solidity)
 
 const overrides = {
   gasLimit: 9999999,
-  gasPrice: 0,
+  gasPrice: 0
 }
 
 describe('ExampleFlashSwap', () => {
   const provider = new MockProvider({
     hardfork: 'istanbul',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
-    gasLimit: 9999999,
+    gasLimit: 9999999
   })
   const [wallet] = provider.getWallets()
   const loadFixture = createFixtureLoader(provider, [wallet])
@@ -30,7 +30,7 @@ describe('ExampleFlashSwap', () => {
   let WETHExchangeV1: Contract
   let WETHPair: Contract
   let flashSwapExample: Contract
-  beforeEach(async function () {
+  beforeEach(async function() {
     const fixture = await loadFixture(v2Fixture)
 
     WETH = fixture.WETH
@@ -45,14 +45,14 @@ describe('ExampleFlashSwap', () => {
     )
   })
 
-  it('uniswapV2Call:0', async () => {
+  it('vertexCall:0', async () => {
     // add liquidity to V1 at a rate of 1 ETH / 200 X
     const WETHPartnerAmountV1 = expandTo18Decimals(2000)
     const ETHAmountV1 = expandTo18Decimals(10)
     await WETHPartner.approve(WETHExchangeV1.address, WETHPartnerAmountV1)
     await WETHExchangeV1.addLiquidity(bigNumberify(1), WETHPartnerAmountV1, MaxUint256, {
       ...overrides,
-      value: ETHAmountV1,
+      value: ETHAmountV1
     })
 
     // add liquidity to V2 at a rate of 1 ETH / 100 X
@@ -65,7 +65,7 @@ describe('ExampleFlashSwap', () => {
 
     const balanceBefore = await WETHPartner.balanceOf(wallet.address)
 
-    // now, execute arbitrage via uniswapV2Call:
+    // now, execute arbitrage via vertexCall:
     // receive 1 ETH from V2, get as much X from V1 as we can, repay V2 with minimum X, keep the rest!
     const arbitrageAmount = expandTo18Decimals(1)
     // instead of being 'hard-coded', the above value could be calculated optimally off-chain. this would be
@@ -86,7 +86,7 @@ describe('ExampleFlashSwap', () => {
     const profit = balanceAfter.sub(balanceBefore).div(expandTo18Decimals(1))
     const reservesV1 = [
       await WETHPartner.balanceOf(WETHExchangeV1.address),
-      await provider.getBalance(WETHExchangeV1.address),
+      await provider.getBalance(WETHExchangeV1.address)
     ]
     const priceV1 = reservesV1[0].div(reservesV1[1])
     const reservesV2 = (await WETHPair.getReserves()).slice(0, 2)
@@ -98,14 +98,14 @@ describe('ExampleFlashSwap', () => {
     expect(priceV2.toString()).to.eq('123') // we pushed the v2 price up to ~123
   })
 
-  it('uniswapV2Call:1', async () => {
+  it('vertexCall:1', async () => {
     // add liquidity to V1 at a rate of 1 ETH / 100 X
     const WETHPartnerAmountV1 = expandTo18Decimals(1000)
     const ETHAmountV1 = expandTo18Decimals(10)
     await WETHPartner.approve(WETHExchangeV1.address, WETHPartnerAmountV1)
     await WETHExchangeV1.addLiquidity(bigNumberify(1), WETHPartnerAmountV1, MaxUint256, {
       ...overrides,
-      value: ETHAmountV1,
+      value: ETHAmountV1
     })
 
     // add liquidity to V2 at a rate of 1 ETH / 200 X
@@ -118,7 +118,7 @@ describe('ExampleFlashSwap', () => {
 
     const balanceBefore = await provider.getBalance(wallet.address)
 
-    // now, execute arbitrage via uniswapV2Call:
+    // now, execute arbitrage via vertexCall:
     // receive 200 X from V2, get as much ETH from V1 as we can, repay V2 with minimum ETH, keep the rest!
     const arbitrageAmount = expandTo18Decimals(200)
     // instead of being 'hard-coded', the above value could be calculated optimally off-chain. this would be
@@ -139,7 +139,7 @@ describe('ExampleFlashSwap', () => {
     const profit = balanceAfter.sub(balanceBefore)
     const reservesV1 = [
       await WETHPartner.balanceOf(WETHExchangeV1.address),
-      await provider.getBalance(WETHExchangeV1.address),
+      await provider.getBalance(WETHExchangeV1.address)
     ]
     const priceV1 = reservesV1[0].div(reservesV1[1])
     const reservesV2 = (await WETHPair.getReserves()).slice(0, 2)
