@@ -3,8 +3,8 @@ import { abi as GOVERNANCE_ABI } from '@uniswap/governance/build/GovernorAlpha.j
 import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
 import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
-import { ChainId, WETH } from '@uniswap/sdk'
-import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import { ChainId, WETH } from '@vertex/sdk'
+import { abi as IVertexPairABI } from '@vertex/core/build/IVertexPair.json'
 import { useMemo } from 'react'
 import { GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, UNI } from '../constants'
 import {
@@ -94,7 +94,7 @@ export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossi
 }
 
 export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(pairAddress, IUniswapV2PairABI, withSignerIfPossible)
+  return useContract(pairAddress, IVertexPairABI, withSignerIfPossible)
 }
 
 export function useMulticallContract(): Contract | null {
