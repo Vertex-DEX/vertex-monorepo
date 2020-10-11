@@ -19,7 +19,6 @@
     "@vertex/lib": "1.1.4"
   },
   "devDependencies": {
-    "@truffle/hdwallet-provider": "^1.1.0",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
