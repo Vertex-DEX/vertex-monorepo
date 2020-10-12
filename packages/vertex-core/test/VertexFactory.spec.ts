@@ -13,14 +13,14 @@ chai.use(solidity)
 
 const TEST_ADDRESSES: [string, string] = [
   '0x1000000000000000000000000000000000000000',
-  '0x2000000000000000000000000000000000000000',
+  '0x2000000000000000000000000000000000000000'
 ]
 
 describe('VertexFactory', () => {
   const provider = new MockProvider({
     hardfork: 'istanbul',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
-    gasLimit: 9999999,
+    gasLimit: 9999999
   })
   const [wallet, other] = provider.getWallets()
   const loadFixture = createFixtureLoader(provider, [wallet, other])
@@ -31,9 +31,9 @@ describe('VertexFactory', () => {
     factory = fixture.factory
   })
 
-  it('feeTo, feeToSetter, allPairsLength', async () => {
-    expect(await factory.feeTo()).to.eq(AddressZero)
-    expect(await factory.feeToSetter()).to.eq(wallet.address)
+  it('allPairsLength', async () => {
+    // expect(await factory.feeTo()).to.eq(AddressZero)
+    // expect(await factory.feeToSetter()).to.eq(wallet.address)
     expect(await factory.allPairsLength()).to.eq(0)
   })
 
@@ -71,16 +71,16 @@ describe('VertexFactory', () => {
     expect(receipt.gasUsed).to.eq(2508306)
   })
 
-  it('setFeeTo', async () => {
-    await expect(factory.connect(other).setFeeTo(other.address)).to.be.revertedWith('Vertex: FORBIDDEN')
-    await factory.setFeeTo(wallet.address)
-    expect(await factory.feeTo()).to.eq(wallet.address)
-  })
+  // it('setFeeTo', async () => {
+  //   await expect(factory.connect(other).setFeeTo(other.address)).to.be.revertedWith('Vertex: FORBIDDEN')
+  //   await factory.setFeeTo(wallet.address)
+  //   expect(await factory.feeTo()).to.eq(wallet.address)
+  // })
 
-  it('setFeeToSetter', async () => {
-    await expect(factory.connect(other).setFeeToSetter(other.address)).to.be.revertedWith('Vertex: FORBIDDEN')
-    await factory.setFeeToSetter(other.address)
-    expect(await factory.feeToSetter()).to.eq(other.address)
-    await expect(factory.setFeeToSetter(wallet.address)).to.be.revertedWith('Vertex: FORBIDDEN')
-  })
+  // it('setFeeToSetter', async () => {
+  //   await expect(factory.connect(other).setFeeToSetter(other.address)).to.be.revertedWith('Vertex: FORBIDDEN')
+  //   await factory.setFeeToSetter(other.address)
+  //   expect(await factory.feeToSetter()).to.eq(other.address)
+  //   await expect(factory.setFeeToSetter(wallet.address)).to.be.revertedWith('Vertex: FORBIDDEN')
+  // })
 })

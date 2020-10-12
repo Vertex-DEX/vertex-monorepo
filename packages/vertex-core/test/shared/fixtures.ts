@@ -13,11 +13,11 @@ interface FactoryFixture {
 }
 
 const overrides = {
-  gasLimit: 9999999,
+  gasLimit: 9999999
 }
 
 export async function factoryFixture(_: Web3Provider, [wallet]: Wallet[]): Promise<FactoryFixture> {
-  const factory = await deployContract(wallet, VertexFactory, [wallet.address], overrides)
+  const factory = await deployContract(wallet, VertexFactory, [], overrides)
   return { factory }
 }
 
