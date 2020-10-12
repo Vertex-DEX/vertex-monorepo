@@ -4,17 +4,12 @@ import './interfaces/IVertexFactory.sol';
 import './VertexPair.sol';
 
 contract VertexFactory is IVertexFactory {
-    // address public feeTo;
-    // address public feeToSetter;
-
     mapping(address => mapping(address => address)) public getPair;
     address[] public allPairs;
 
     event PairCreated(address indexed token0, address indexed token1, address pair, uint256);
 
-    constructor() public {
-        // feeToSetter = _feeToSetter;
-    }
+    constructor() public {}
 
     function allPairsLength() external view returns (uint256) {
         return allPairs.length;
@@ -36,14 +31,4 @@ contract VertexFactory is IVertexFactory {
         allPairs.push(pair);
         emit PairCreated(token0, token1, pair, allPairs.length);
     }
-
-    // function setFeeTo(address _feeTo) external {
-    //     require(msg.sender == feeToSetter, 'Vertex: FORBIDDEN');
-    //     feeTo = _feeTo;
-    // }
-
-    // function setFeeToSetter(address _feeToSetter) external {
-    //     require(msg.sender == feeToSetter, 'Vertex: FORBIDDEN');
-    //     feeToSetter = _feeToSetter;
-    // }
 }
