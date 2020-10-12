@@ -25,7 +25,7 @@ export enum Rounding {
 export const FACTORY_ADDRESS = '0xfd0e5F90AA36aA083352cC9B710f0C98b6A42624' // VertexFactory Kovan
 // export const FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'  // UniswapV2Factory
 
-export const INIT_CODE_HASH = '0x05b65cd7bc1a34ea2c4c9b05ca0a5f82e650972ebf888352303df7cdbe41725f'
+export const INIT_CODE_HASH = '0x19ba2ddb6445309dd548aeb22419dbb1666b85c9ba038ff5e68f9002fcc9f8c9'
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
 

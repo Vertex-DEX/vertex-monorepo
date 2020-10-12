@@ -4,7 +4,7 @@ import { deployContract } from 'ethereum-waffle'
 
 import { expandTo18Decimals } from './utilities'
 
-import UniswapV2Factory from '@vertex/core/build/VertexFactory.json'
+import VertexFactory from '@vertex/core/build/VertexFactory.json'
 import IVertexPair from '@vertex/core/build/IVertexPair.json'
 
 import ERC20 from '../../build/ERC20.json'
@@ -49,7 +49,7 @@ export async function v2Fixture(provider: Web3Provider, [wallet]: Wallet[]): Pro
   await factoryV1.initializeFactory((await deployContract(wallet, UniswapV1Exchange, [])).address)
 
   // deploy V2
-  const factoryV2 = await deployContract(wallet, UniswapV2Factory, [wallet.address])
+  const factoryV2 = await deployContract(wallet, VertexFactory, [])
 
   // deploy routers
   const router01 = await deployContract(wallet, VertexRouter01, [factoryV2.address, WETH.address], overrides)
