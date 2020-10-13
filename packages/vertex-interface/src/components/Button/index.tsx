@@ -64,6 +64,7 @@ export const ButtonPrimary = styled(Base)`
 `
 
 export const ButtonLight = styled(Base)`
+  border-radius: 0;
   background-color: ${({ theme }) => theme.primary5};
   color: ${({ theme }) => theme.primaryText1};
   font-size: 16px;

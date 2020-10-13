@@ -14,7 +14,7 @@ import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateUniBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
-import { TYPE, ExternalLink } from '../../theme'
+import { TYPE } from '../../theme'
 
 import { YellowCard } from '../Card'
 import Settings from '../Settings'
@@ -32,6 +32,7 @@ import UniBalanceContent from './UniBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 
 const HeaderFrame = styled.div`
+  background: ${({ theme }) => theme.bg1};
   display: grid;
   grid-template-columns: 1fr 120px;
   align-items: center;
@@ -115,7 +116,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
-  border-radius: 12px;
+  border-radius: 0px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -226,36 +227,36 @@ const StyledNavLink = styled(NavLink).attrs({
   }
 `
 
-const StyledExternalLink = styled(ExternalLink).attrs({
-  activeClassName
-})<{ isActive?: boolean }>`
-  ${({ theme }) => theme.flexRowNoWrap}
-  align-items: left;
-  border-radius: 3rem;
-  outline: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
-  width: fit-content;
-  margin: 0 12px;
-  font-weight: 500;
+// const StyledExternalLink = styled(ExternalLink).attrs({
+//   activeClassName
+// })<{ isActive?: boolean }>`
+//   ${({ theme }) => theme.flexRowNoWrap}
+//   align-items: left;
+//   border-radius: 3rem;
+//   outline: none;
+//   cursor: pointer;
+//   text-decoration: none;
+//   color: ${({ theme }) => theme.text2};
+//   font-size: 1rem;
+//   width: fit-content;
+//   margin: 0 12px;
+//   font-weight: 500;
 
-  &.${activeClassName} {
-    border-radius: 12px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text1};
-  }
+//   &.${activeClassName} {
+//     border-radius: 12px;
+//     font-weight: 600;
+//     color: ${({ theme }) => theme.text1};
+//   }
 
-  :hover,
-  :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
-  }
+//   :hover,
+//   :focus {
+//     color: ${({ theme }) => darken(0.1, theme.text1)};
+//   }
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-      display: none;
-`}
-`
+//   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+//       display: none;
+// `}
+// `
 
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
@@ -315,14 +316,14 @@ export default function Header() {
             {t('pool')}
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            UNI
+            VERTX
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
+          {/* <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
           </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
             Charts <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
+          </StyledExternalLink> */}
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
@@ -336,7 +337,7 @@ export default function Header() {
             <UNIWrapper onClick={toggleClaimModal}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming UNI</Dots> : 'Claim UNI'}
+                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming VERTX</Dots> : 'Claim VERTX'}
                 </TYPE.white>
               </UNIAmount>
               <CardNoise />
@@ -363,7 +364,7 @@ export default function Header() {
                     </TYPE.white>
                   </HideSmall>
                 )}
-                UNI
+                VERTX
               </UNIAmount>
               <CardNoise />
             </UNIWrapper>
