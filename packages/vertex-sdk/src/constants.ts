@@ -22,7 +22,7 @@ export enum Rounding {
   ROUND_UP
 }
 
-export const FACTORY_ADDRESS = '0xfd0e5F90AA36aA083352cC9B710f0C98b6A42624' // VertexFactory Kovan
+export const FACTORY_ADDRESS = '0xe5879f7C3307601FfB73b78bbA5d940e671CcEE2' // VertexFactory Kovan
 // export const FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'  // UniswapV2Factory
 
 export const INIT_CODE_HASH = '0x19ba2ddb6445309dd548aeb22419dbb1666b85c9ba038ff5e68f9002fcc9f8c9'

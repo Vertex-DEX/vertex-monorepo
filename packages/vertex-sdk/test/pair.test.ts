@@ -3,6 +3,7 @@ import { ChainId, Token, Pair, TokenAmount, WETH, Price } from '../src'
 describe('Pair', () => {
   const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
   const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
+  const VEENUS = new Token(ChainId.KOVAN, '0x731A09d514d88Abb0481bbB6aef343ff86cbaef1', 18, 'VEENUS', 'Veenus')
 
   describe('constructor', () => {
     it('cannot be used for tokens on different chains', () => {
@@ -14,7 +15,8 @@ describe('Pair', () => {
 
   describe('#getAddress', () => {
     it('returns the correct address', () => {
-      expect(Pair.getAddress(USDC, DAI)).toEqual('0x3A87F21f9276a3cc9802D2C3e1Ad8BaeD16A48ff')
+      expect(Pair.getAddress(USDC, DAI)).toEqual('0x011E7Ff441Be4ef149E3F35B9d658859f09b61B1')
+      expect(Pair.getAddress(VEENUS, WETH[ChainId.KOVAN])).toEqual('0xD0343BbBA57d544801E5eDc400Dcc621A18a1eAD')
     })
   })
 
