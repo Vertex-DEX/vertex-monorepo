@@ -8,7 +8,7 @@ import { isMobile } from 'react-device-detect'
 const PhishAlert = styled.div<{ isActive: any }>`
   width: 100%;
   padding: 6px 6px;
-  background-color: ${({ theme }) => theme.blue1};
+  background-color: ${({ theme }) => theme.cyan1};
   color: white;
   font-size: 11px;
   justify-content: space-between;
@@ -30,15 +30,15 @@ export default function URLWarning() {
     <PhishAlert isActive={showURLWarning}>
       <div style={{ display: 'flex' }}>
         <AlertTriangle style={{ marginRight: 6 }} size={12} /> Make sure the URL is
-        <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>app.uniswap.org</code>
+        <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>app.vert.exchange</code>
       </div>
       <StyledClose size={12} onClick={toggleURLWarning} />
     </PhishAlert>
-  ) : window.location.hostname === 'app.uniswap.org' ? (
+  ) : window.location.hostname !== 'app.vert.exchange' ? (
     <PhishAlert isActive={showURLWarning}>
       <div style={{ display: 'flex' }}>
         <AlertTriangle style={{ marginRight: 6 }} size={12} /> Always make sure the URL is
-        <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>app.uniswap.org</code> - bookmark it
+        <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>app.vert.exchange</code> - bookmark it
         to be safe.
       </div>
       <StyledClose size={12} onClick={toggleURLWarning} />

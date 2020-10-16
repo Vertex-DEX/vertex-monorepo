@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import AddressClaimModal from '../components/claim/AddressClaimModal'
+import BetaWarning from '../components/Footer/BetaWarning'
 import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
@@ -117,6 +118,7 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
+        <BetaWarning />
       </AppWrapper>
     </Suspense>
   )

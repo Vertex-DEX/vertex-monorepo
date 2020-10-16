@@ -11,10 +11,10 @@ const StyledPolling = styled.div`
   display: flex;
   right: 0;
   bottom: 0;
-  padding: 1rem;
+  padding: 0.125rem 0.25rem;
   color: white;
   transition: opacity 0.25s ease;
-  color: ${({ theme }) => theme.green1};
+  color: ${({ theme }) => theme.red1};
   :hover {
     opacity: 1;
   }
@@ -32,7 +32,7 @@ const StyledPollingDot = styled.div`
   margin-top: 3px;
   // border-radius: 50%;
   position: relative;
-  background-color: ${({ theme }) => theme.green1};
+  background-color: ${({ theme }) => theme.black};
 `
 
 const rotate360 = keyframes`
@@ -51,7 +51,7 @@ const Spinner = styled.div`
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  border-left: 2px solid ${({ theme }) => theme.green1};
+  border-left: 2px solid ${({ theme }) => theme.red1};
   background: transparent;
   width: 14px;
   height: 14px;
