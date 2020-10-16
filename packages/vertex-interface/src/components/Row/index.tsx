@@ -8,7 +8,7 @@ const Row = styled(Box)<{ align?: string; padding?: string; border?: string; bor
   align-items: ${({ align }) => (align ? align : 'center')};
   padding: ${({ padding }) => padding};
   border: ${({ border }) => border};
-  border-radius: ${({ borderRadius }) => borderRadius};
+  // border-radius: ${({ borderRadius }) => borderRadius};
 `
 
 export const RowBetween = styled(Row)`

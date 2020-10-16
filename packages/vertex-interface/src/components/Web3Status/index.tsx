@@ -40,7 +40,7 @@ const Web3StatusGeneric = styled(ButtonSecondary)`
   width: 100%;
   align-items: center;
   padding: 0.5rem;
-  border-radius: 12px;
+  // border-radius: 12px;
   cursor: pointer;
   user-select: none;
   :focus {
@@ -61,7 +61,7 @@ const Web3StatusError = styled(Web3StatusGeneric)`
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
   background-color: ${({ theme }) => theme.primary4};
   border: none;
-  border-radius: 0;
+  // border-radius: 0;
   color: ${({ theme }) => theme.primaryText1};
   font-weight: 500;
 

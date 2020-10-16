@@ -87,7 +87,7 @@ const MenuFlyout = styled.span`
   background-color: ${({ theme }) => theme.bg2};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
-  border-radius: 12px;
+  // border-radius: 12px;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
@@ -119,7 +119,7 @@ const ModalContentWrapper = styled.div`
   justify-content: center;
   padding: 2rem 0;
   background-color: ${({ theme }) => theme.bg2};
-  border-radius: 20px;
+  // border-radius: 20px;
 `
 
 export default function SettingsTab() {
