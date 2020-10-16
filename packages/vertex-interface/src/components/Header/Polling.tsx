@@ -14,7 +14,7 @@ const StyledPolling = styled.div`
   padding: 0.125rem 0.25rem;
   color: white;
   transition: opacity 0.25s ease;
-  color: ${({ theme }) => theme.red1};
+  color: ${({ theme }) => theme.black};
   :hover {
     opacity: 1;
   }
@@ -51,7 +51,7 @@ const Spinner = styled.div`
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  border-left: 2px solid ${({ theme }) => theme.red1};
+  border-left: 2px solid ${({ theme }) => theme.black};
   background: transparent;
   width: 14px;
   height: 14px;
