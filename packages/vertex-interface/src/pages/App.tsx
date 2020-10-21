@@ -23,6 +23,7 @@ import {
 // import MigrateV1 from './MigrateV1'
 // import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
 // import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
+import Presale from './Presale'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
@@ -92,6 +93,7 @@ export default function App() {
           <TopLevelModals />
           <Web3ReactManager>
             <Switch>
+              <Route exact strict path="/presale" component={Presale} />
               <Route exact strict path="/swap" component={Swap} />
               {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} /> */}
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />

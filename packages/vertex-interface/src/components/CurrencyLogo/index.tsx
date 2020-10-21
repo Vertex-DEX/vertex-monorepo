@@ -1,8 +1,9 @@
-import { Currency, ETHER, Token } from '@vertex/sdk'
+import { Currency, ETHER, VERTX, Token } from '@vertex/sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 
 import EthereumLogo from '../../assets/images/ethereum-logo.png'
+import VertexTokenLogo from '../../assets/images/token-logo.png'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
@@ -36,7 +37,7 @@ export default function CurrencyLogo({
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
   const srcs: string[] = useMemo(() => {
-    if (currency === ETHER) return []
+    if (currency === ETHER || currency === VERTX) return []
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
@@ -50,6 +51,8 @@ export default function CurrencyLogo({
 
   if (currency === ETHER) {
     return <StyledEthereumLogo src={EthereumLogo} size={size} style={style} />
+  } else if (currency === VERTX) {
+    return <StyledEthereumLogo src={VertexTokenLogo} size={size} style={style} />
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />

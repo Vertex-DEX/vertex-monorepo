@@ -296,6 +296,9 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
+          <StyledNavLink id={`presale-nav-link`} to={'/presale'}>
+            {t('presale')}
+          </StyledNavLink>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
           </StyledNavLink>
