@@ -7,15 +7,24 @@ import { AutoColumn, ColumnCenter } from '../../components/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { useCurrency } from '../../hooks/Tokens'
 import { Wrapper } from '../../components/swap/styleds'
-import { usePresaleState, usePresaleActionHandlers } from '../../state/presale/hooks'
+import { useDerivedPresaleInfo, usePresaleActionHandlers } from '../../state/presale/hooks'
+import { Field } from '../../state/presale/actions'
 
 export default function Presale() {
   const theme = useContext(ThemeContext)
   const { t } = useTranslation()
-  const ethCurrency = useCurrency('ETH')
+  const etherCurrency = useCurrency('ETH')
   const vertxCurrency = useCurrency('VERTX')
-  const { valueETH, valueVERTX } = usePresaleState()
+  const { independentField, dependentField, typedValue, formattedAmounts } = useDerivedPresaleInfo(
+    etherCurrency,
+    vertxCurrency
+  )
   const { onETHInput, onVERTXInput } = usePresaleActionHandlers()
+
+  const values = {
+    [independentField]: typedValue,
+    [dependentField]: formattedAmounts[dependentField]
+  }
 
   return (
     <>
@@ -24,9 +33,9 @@ export default function Presale() {
           <AutoColumn gap={'md'}>
             <CurrencyInputPanel
               label={t('youAreSending')}
-              value={valueETH}
+              value={values[Field.ETHER]}
               showMaxButton={true}
-              currency={ethCurrency}
+              currency={etherCurrency}
               onUserInput={onETHInput}
               disableCurrencySelect={true}
               otherCurrency={vertxCurrency}
@@ -37,12 +46,13 @@ export default function Presale() {
             </ColumnCenter>
             <CurrencyInputPanel
               label={t('youAreBuying')}
-              value={valueVERTX}
-              showMaxButton={true}
+              value={values[Field.VERTX]}
+              hideBalance={true}
+              showMaxButton={false}
               currency={vertxCurrency}
               onUserInput={onVERTXInput}
               disableCurrencySelect={true}
-              otherCurrency={ethCurrency}
+              otherCurrency={etherCurrency}
               id="presale-eth-input"
             />
           </AutoColumn>

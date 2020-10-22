@@ -2,26 +2,31 @@ import { createReducer } from '@reduxjs/toolkit'
 import { Field, typeInput } from './actions'
 
 export interface PresaleState {
-  readonly valueETH: string
-  readonly valueVERTX: string
+  readonly independentField: Field
+  readonly typedValue: string
+  readonly otherTypedValue: string
 }
 
 const initialState: PresaleState = {
-  valueETH: '',
-  valueVERTX: ''
+  independentField: Field.ETHER,
+  typedValue: '',
+  otherTypedValue: ''
 }
 
 export default createReducer<PresaleState>(initialState, builder =>
   builder.addCase(typeInput, (state, { payload: { field, typedValue } }) => {
-    if (field === Field.ETH) {
+    if (field === state.independentField) {
       return {
         ...state,
-        valueETH: typedValue
+        independentField: field,
+        typedValue
       }
     } else {
       return {
         ...state,
-        valueVERTX: typedValue
+        independentField: field,
+        typedValue,
+        otherTypedValue: state.typedValue
       }
     }
   })
