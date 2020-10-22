@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
 
 export enum Field {
-  ETH = 'ETH',
+  ETHER = 'ETHER',
   VERTX = 'VERTX'
 }
 
