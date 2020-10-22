@@ -4,7 +4,8 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { injected, walletconnect, walletlink } from '../connectors'
 // import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0xbdbD5f8475d01150244001C204051d87282e4Acb' // VertexRouter02 Kovan
+export const PRESALE_ADDRESS = '0xbdbD5f8475d01150244001C204051d87282e4Acb' // VertexPresale
+export const ROUTER_ADDRESS = '0xbdbD5f8475d01150244001C204051d87282e4Acb' // VertexRouter02
 // export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'  // UniswapRouter02
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
