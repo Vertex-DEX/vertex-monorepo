@@ -17,7 +17,7 @@ export function useDerivedPresaleInfo(
   independentField: Field
   dependentField: Field
   typedValue: string
-  formattedAmounts: { [field in Field]: string }
+  parsedAmounts: { [field in Field]?: CurrencyAmount }
 } {
   const { chainId } = useActiveWeb3React()
 
@@ -45,19 +45,16 @@ export function useDerivedPresaleInfo(
     }
   }, [otherTypedValue, currencies, dependentField, independentAmount, etherCurrency, chainId, vertxCurrency])
 
-  const independentFormattedAmount: string = independentAmount?.toSignificant(6) ?? ''
-  const dependentFormattedAmount: string = dependentAmount?.toSignificant(6) ?? ''
-
-  const formattedAmounts: { [field in Field]: string } = {
-    [Field.ETHER]: independentField === Field.ETHER ? independentFormattedAmount : dependentFormattedAmount,
-    [Field.VERTX]: independentField === Field.ETHER ? dependentFormattedAmount : independentFormattedAmount
+  const parsedAmounts: { [field in Field]?: CurrencyAmount } = {
+    [Field.ETHER]: independentField === Field.ETHER ? independentAmount : dependentAmount,
+    [Field.VERTX]: independentField === Field.ETHER ? dependentAmount : independentAmount
   }
 
   return {
     independentField,
     dependentField,
     typedValue,
-    formattedAmounts
+    parsedAmounts
   }
 }
 

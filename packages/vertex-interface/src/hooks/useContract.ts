@@ -5,8 +5,9 @@ import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/Stak
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
 import { ChainId, WETH } from '@vertex/sdk'
 import { abi as IVertexPairABI } from '@vertex/core/build/IVertexPair.json'
+import { abi as VertexPresaleABI } from '../abis/VertexPresale.json'
 import { useMemo } from 'react'
-import { GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, UNI } from '../constants'
+import { PRESALE_ADDRESS, GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, UNI } from '../constants'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
@@ -127,4 +128,8 @@ export function useSocksController(): Contract | null {
     UNISOCKS_ABI,
     false
   )
+}
+
+export function usePresaleContract(): Contract | null {
+  return useContract(PRESALE_ADDRESS, VertexPresaleABI, true)
 }
