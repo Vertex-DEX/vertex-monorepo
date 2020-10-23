@@ -77,7 +77,7 @@ export function usePresaleCallback(
         console.debug('Failed to buy tokens using ETH', error)
         throw error
       })
-  }, [contract, amount, beneficiary, addTransaction])
+  }, [contract, account, amount, beneficiary, addTransaction])
 
   if (!library || !account || !chainId || !contract) {
     return { state: PresaleState.INVALID, callback: null, error: 'Missing dependencies' }
