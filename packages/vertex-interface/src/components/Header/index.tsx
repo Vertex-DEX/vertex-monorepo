@@ -345,7 +345,7 @@ export default function Header() {
           )}
           {!availableClaim && aggregateBalance && (
             // <UNIWrapper onClick={() => setShowUniBalanceModal(true)}>
-            <UNIWrapper>
+            <UNIWrapper onClick={() => setShowUniBalanceModal(true)}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 {account && (
                   <HideSmall>
