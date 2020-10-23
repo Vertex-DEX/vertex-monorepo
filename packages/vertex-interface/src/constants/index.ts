@@ -4,7 +4,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { injected, walletconnect, walletlink } from '../connectors'
 // import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const PRESALE_ADDRESS = '0xbdbD5f8475d01150244001C204051d87282e4Acb' // VertexPresale
+export const PRESALE_ADDRESS = '0x022537c87318C17Dce455F03e9C44833d44a19D5' // VertexPresale
 export const ROUTER_ADDRESS = '0xbdbD5f8475d01150244001C204051d87282e4Acb' // VertexRouter02
 // export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'  // UniswapRouter02
 
@@ -28,7 +28,7 @@ export const PROPOSAL_LENGTH_IN_DAYS = 7
 
 export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 
-const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+const UNI_ADDRESS = '0x1957A032b9A33043d6D1cb18cE1A26e4e673e851'
 export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),

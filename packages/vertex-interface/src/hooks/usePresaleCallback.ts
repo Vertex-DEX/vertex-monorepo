@@ -8,11 +8,16 @@ import { useActiveWeb3React } from './index'
 import useENS from './useENS'
 import { usePresaleContract } from './useContract'
 import { calculateGasMargin } from '../utils'
+import { BigNumber } from '@ethersproject/bignumber'
 
 export enum PresaleState {
   INVALID,
   LOADING,
   VALID
+}
+
+function toHex(currencyAmount: CurrencyAmount) {
+  return `0x${currencyAmount.raw.toString(16)}`
 }
 
 export function usePresaleCallback(
@@ -47,21 +52,29 @@ export function usePresaleCallback(
       return
     }
 
-    const estimatedGas = await contract.estimateGas.buyTokens(beneficiary).catch(() => {
-      return contract.estimateGas.buyTokens(beneficiary)
-    })
+    const value: string = toHex(amount)
+
+    const gasEstimate = await contract.estimateGas
+      .buyTokens(beneficiary, { value })
+      .then(estimate => estimate)
+      .catch(gasError => {
+        console.error('Gas estimate failed', gasError)
+        return BigNumber.from(200000)
+      })
 
     return contract
       .buyTokens(beneficiary, {
-        gasLimit: calculateGasMargin(estimatedGas)
+        gasLimit: calculateGasMargin(gasEstimate),
+        value,
+        from: account
       })
       .then((response: TransactionResponse) => {
         addTransaction(response, {
-          summary: 'Send ' + amount.currency.symbol
+          summary: `Contributed ${amount.toSignificant(4)} ${amount.currency.symbol}`
         })
       })
       .catch((error: Error) => {
-        console.debug('Failed to send ETH', error)
+        console.debug('Failed to buy tokens using ETH', error)
         throw error
       })
   }, [contract, amount, beneficiary, addTransaction])
@@ -74,12 +87,12 @@ export function usePresaleCallback(
     if (recipientAddressOrName !== null) {
       return { state: PresaleState.INVALID, callback: null, error: 'Invalid recipient' }
     } else {
-      return { state: PresaleState.LOADING, callback: null, error: null }
+      return { state: PresaleState.LOADING, callback: null, error: 'Loading...' }
     }
   }
 
   if (!amount) {
-    return { state: PresaleState.INVALID, callback: null, error: 'Invalid ETH amount' }
+    return { state: PresaleState.INVALID, callback: null, error: 'Enter an amount' }
   }
 
   if (!contribution || !minContribution || !maxContribution) {

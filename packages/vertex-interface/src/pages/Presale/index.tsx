@@ -13,7 +13,7 @@ import { useDerivedPresaleInfo, usePresaleActionHandlers } from '../../state/pre
 import { Field } from '../../state/presale/actions'
 import { useActiveWeb3React } from '../../hooks'
 import { useWalletModalToggle } from '../../state/application/hooks'
-import { usePresaleCallback } from '../../hooks/usePresaleCallback'
+import { PresaleState, usePresaleCallback } from '../../hooks/usePresaleCallback'
 
 export default function Presale() {
   const { account } = useActiveWeb3React()
@@ -36,7 +36,7 @@ export default function Presale() {
     [dependentField]: parsedAmounts[dependentField]?.toSignificant(6) ?? ''
   }
 
-  const { callback } = usePresaleCallback(account, parsedAmounts[Field.ETHER])
+  const { state, callback, error } = usePresaleCallback(account, parsedAmounts[Field.ETHER])
 
   return (
     <>
@@ -46,7 +46,7 @@ export default function Presale() {
             <CurrencyInputPanel
               label={t('youAreSending')}
               value={formattedAmounts[Field.ETHER]}
-              showMaxButton={true}
+              showMaxButton={false}
               currency={etherCurrency}
               onUserInput={onETHInput}
               disableCurrencySelect={true}
@@ -59,7 +59,6 @@ export default function Presale() {
             <CurrencyInputPanel
               label={t('youAreBuying')}
               value={formattedAmounts[Field.VERTX]}
-              hideBalance={true}
               showMaxButton={false}
               currency={vertxCurrency}
               onUserInput={onVERTXInput}
@@ -79,11 +78,11 @@ export default function Presale() {
                   }
                 }}
                 id="presale-button"
-                // disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                disabled={state !== PresaleState.VALID}
                 // error={isValid && priceImpactSeverity > 2 && !swapCallbackError}
               >
                 <Text fontSize={20} fontWeight={500}>
-                  Invest
+                  {error ? error : `Contribute`}
                 </Text>
               </ButtonError>
             )}
