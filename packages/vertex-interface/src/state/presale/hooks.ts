@@ -4,7 +4,6 @@ import { Currency, CurrencyAmount } from '@vertex/sdk'
 import { Field, typeInput } from './actions'
 import { AppDispatch, AppState } from '../index'
 import { tryParseAmount } from '../swap/hooks'
-import { useActiveWeb3React } from '../../hooks'
 
 export function usePresaleState(): AppState['presale'] {
   return useSelector<AppState, AppState['presale']>(state => state.presale)
@@ -19,9 +18,7 @@ export function useDerivedPresaleInfo(
   typedValue: string
   parsedAmounts: { [field in Field]?: CurrencyAmount }
 } {
-  const { chainId } = useActiveWeb3React()
-
-  const { independentField, typedValue, otherTypedValue } = usePresaleState()
+  const { independentField, typedValue } = usePresaleState()
 
   const dependentField = independentField === Field.ETHER ? Field.VERTX : Field.ETHER
 
@@ -43,7 +40,7 @@ export function useDerivedPresaleInfo(
     } else {
       return undefined
     }
-  }, [otherTypedValue, currencies, dependentField, independentAmount, etherCurrency, chainId, vertxCurrency])
+  }, [dependentField, independentAmount])
 
   const parsedAmounts: { [field in Field]?: CurrencyAmount } = {
     [Field.ETHER]: independentField === Field.ETHER ? independentAmount : dependentAmount,
