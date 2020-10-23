@@ -680,27 +680,18 @@ contract VertX is ERC20, ERC20Burnable {
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowed;
 
-    uint256 public constant INITIAL_SUPPLY = 400000000 * 10**18;
+    uint256 public constant INITIAL_SUPPLY = 500000000 * 10**18;
 
-    constructor() public payable ERC20("VertX", "VERTX") {
+    constructor() public payable ERC20('VertX', 'VERTX') {
         _mint(msg.sender, INITIAL_SUPPLY);
     }
 
-    function calculateFee(uint256 amount)
-        internal
-        pure
-        returns (uint256 feeAmount)
-    {
+    function calculateFee(uint256 amount) internal pure returns (uint256 feeAmount) {
         uint256 roundValue = amount.ceil(100);
         feeAmount = roundValue.div(100);
     }
 
-    function transfer(address recipient, uint256 amount)
-        public
-        virtual
-        override
-        returns (bool)
-    {
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
         uint256 tokensToBurn = calculateFee(amount);
         uint256 tokensToTransfer = amount.sub(tokensToBurn);
         _burn(msg.sender, tokensToBurn);
@@ -719,7 +710,7 @@ contract VertX is ERC20, ERC20Burnable {
         _transfer(sender, recipient, tokensToTransfer);
         uint256 decreasedAllowance = allowance(sender, msg.sender).sub(
             amount,
-            "ERC20: transfer amount exceeds allowance"
+            'ERC20: transfer amount exceeds allowance'
         );
         _approve(sender, msg.sender, decreasedAllowance);
         return true;
