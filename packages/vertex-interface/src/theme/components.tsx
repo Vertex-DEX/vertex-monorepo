@@ -84,10 +84,30 @@ export const StyledInternalLink = styled(Link)`
   }
 `
 
-const StyledLink = styled.a`
+// const StyledLink = styled.a`
+//   text-decoration: none;
+//   cursor: pointer;
+//   color: ${({ theme }) => theme.primary1};
+//   font-weight: 500;
+
+//   :hover {
+//     text-decoration: underline;
+//   }
+
+//   :focus {
+//     outline: none;
+//     text-decoration: underline;
+//   }
+
+//   :active {
+//     text-decoration: none;
+//   }
+// `
+
+const StyledExternalLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.white};
   font-weight: 500;
 
   :hover {
@@ -146,7 +166,7 @@ export function ExternalLink({
     },
     [href, target]
   )
-  return <StyledLink target={target} rel={rel} href={href} onClick={handleClick} {...rest} />
+  return <StyledExternalLink target={target} rel={rel} href={href} onClick={handleClick} {...rest} />
 }
 
 const rotate = keyframes`
